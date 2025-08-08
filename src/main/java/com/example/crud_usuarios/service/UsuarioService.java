@@ -6,4 +6,6 @@ import org.springframework.http.ResponseEntity;
 
 public interface UsuarioService {
     ResponseEntity<?> crearUsuario(UsuarioDTO usuarioDTO);
+    ResponseEntity<?> actualizarUsuario(Long id, UsuarioDTO usuarioDTO);
+
 }

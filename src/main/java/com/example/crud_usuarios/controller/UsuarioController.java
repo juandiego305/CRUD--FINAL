@@ -29,4 +29,19 @@ public class UsuarioController {
 
         return usuarioService.crearUsuario(usuarioDTO);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizarUsuario(@PathVariable Long id,
+                                               @Valid @RequestBody UsuarioDTO usuarioDTO,
+                                               BindingResult result) {
+        if (result.hasErrors()) {
+            StringBuilder errores = new StringBuilder();
+            result.getFieldErrors().forEach(error ->
+                    errores.append("Campo '").append(error.getField())
+                            .append("': ").append(error.getDefaultMessage()).append(". ")
+            );
+            return ResponseEntity.badRequest().body(errores.toString());
+        }
+
+        return usuarioService.actualizarUsuario(id, usuarioDTO);
+    }
     }
