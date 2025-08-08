@@ -42,4 +42,31 @@ public class UsuarioServiceImpl implements UsuarioService {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("Usuario creado exitosamente.");
     }
+
+    @Override
+    public ResponseEntity<?> actualizarUsuario(Long id, UsuarioDTO usuarioDTO) {
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
+        if (usuarioOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Error: Usuario no encontrado con ID: " + id);
+        }
+
+        Usuario usuario = usuarioOptional.get();
+
+        // Actualizar los datos
+        usuario.setPrimerNombre(usuarioDTO.getPrimerNombre());
+        usuario.setSegundoNombre(usuarioDTO.getSegundoNombre());
+        usuario.setApellidos(usuarioDTO.getApellidos());
+        usuario.setDireccion(usuarioDTO.getDireccion());
+        usuario.setCorreo(usuarioDTO.getCorreo());
+        usuario.setTipoDocumento(usuarioDTO.getTipoDocumento());
+        usuario.setNumeroDocumento(usuarioDTO.getNumeroDocumento());
+        usuario.setTelefono(usuarioDTO.getTelefono());
+        usuario.setCiudadResidencia(usuarioDTO.getCiudadResidencia());
+
+        usuarioRepository.save(usuario);
+
+        return ResponseEntity.ok("Usuario actualizado correctamente.");
+    }
 }
+
