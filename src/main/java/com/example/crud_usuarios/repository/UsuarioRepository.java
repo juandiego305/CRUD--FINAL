@@ -7,4 +7,3 @@ import java.util.Optional;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findByNumeroDocumento(String numeroDocumento);
 }
-

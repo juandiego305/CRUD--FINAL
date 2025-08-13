@@ -2,8 +2,12 @@ package com.example.crud_usuarios.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
+@Setter
+@Getter
 public class UsuarioDTO {
 
     @NotBlank(message = "El primer nombre es obligatorio")

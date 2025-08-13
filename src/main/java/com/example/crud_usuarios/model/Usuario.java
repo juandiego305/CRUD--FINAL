@@ -2,10 +2,14 @@ package com.example.crud_usuarios.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "usuarios")
 @Data
+@Setter
+@Getter
 public class Usuario {
 
     @Id
