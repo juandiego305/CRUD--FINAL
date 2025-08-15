@@ -20,25 +20,25 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
 
     @Override
-    public ResponseEntity<?> createUser(UserDTO userDTO) {
-        Optional<User> usuarioExistente = userRepository.findBydocumentNumber(userDTO.getDocumentNumber());
-        if (usuarioExistente.isPresent()) {
-            throw new RuntimeException("Ya existe un usuario con el mismo número de documento.");
+    public ResponseEntity<Map<String, String>> createUser(UserDTO userDTO) {
+        Optional<User> existingUser = userRepository.findBydocumentNumber(userDTO.getDocumentNumber());
+        if (existingUser.isPresent()) {
+            throw new RuntimeException("Usuario Existente.");
         }
 
         User user = userMapper.toModel(userDTO);
         userRepository.save(user);
 
         Map<String, String> response = new HashMap<>();
-        response.put("message", "User created successfully");
+        response.put("message", "Usuario creado exitosamente");
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @Override
-    public ResponseEntity<?> updateUser(Long id, UserDTO userDTO) {
+    public ResponseEntity<UserDTO> updateUser(Long id, UserDTO userDTO) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + id));
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado  " ));
 
         user.setFirstName(userDTO.getFirstName());
         user.setMiddleName(userDTO.getMiddleName());
