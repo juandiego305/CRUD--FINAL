@@ -33,15 +33,15 @@ public class UserDTO {
     private String email;
 
     @NotBlank(message = "El tipo de documento es obligatorio")
-    @Pattern(regexp = "^(CC|TI|CE|PAS)$", message = "Tipo de documento inválido")
+    @Pattern(regexp = "^(CC|TI|CE|PAS)$", message = "Error 506 Invalido")
     private String documentType;
 
     @NotBlank(message = "El número de documento es obligatorio")
-    @Pattern(regexp = "^[0-9]+$", message = "El número de documento debe contener solo números")
+    @Pattern(regexp = "^[0-9]+$", message = "Error 504 Caracteres invalidos")
     private String documentNumber;
 
     @NotBlank(message = "El teléfono es obligatorio")
-    @Pattern(regexp = "^\\d{10}$", message = "El teléfono debe tener exactamente 10 dígitos")
+    @Pattern(regexp = "^\\d{10}$", message = "Error 505 Integridad")
     private String phone;
 
     private String city;

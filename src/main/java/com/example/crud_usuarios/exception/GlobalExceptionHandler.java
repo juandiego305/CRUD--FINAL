@@ -36,6 +36,8 @@ public class GlobalExceptionHandler {
         body.put("timestamp", LocalDateTime.now());
         body.put("status", HttpStatus.BAD_REQUEST.value());
         body.put("message", ex.getMessage());
+        body.put("error", ex.getClass().getSimpleName());
+        body.put("details", ex.toString());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 }
