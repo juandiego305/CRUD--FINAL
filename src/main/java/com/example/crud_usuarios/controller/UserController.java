@@ -25,4 +25,14 @@ public class UserController {
         UserResponseDTO response = userMapper.toResponseDTO(createdUser);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> updateUser(
+            @PathVariable Long id,
+            @Valid @RequestBody UserDTO userDTO) {
+        User updatedUser = userService.updateUser(id, userDTO);
+        UserResponseDTO response = userMapper.toResponseDTO(updatedUser);
+        return ResponseEntity.ok(response);
+    }
+
 }
