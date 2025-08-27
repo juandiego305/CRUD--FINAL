@@ -37,11 +37,11 @@ public class UserDTO {
     private String documentType;
 
     @NotBlank(message = "El número de documento es obligatorio")
-    @Pattern(regexp = "^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$", message = "Error 401 caracteres invalidos")
+    @Pattern(regexp = "^[0-9]+$", message = "El número de documento debe contener solo números")
     private String documentNumber;
 
     @NotBlank(message = "El teléfono es obligatorio")
-    @Pattern(regexp = "^\\d{10}$", message = "Error 402  ")
+    @Pattern(regexp = "^\\d{10}$", message = "El teléfono debe tener exactamente 10 dígitos")
     private String phone;
 
     private String city;
